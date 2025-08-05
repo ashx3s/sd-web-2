@@ -11,9 +11,11 @@ export default function MarkDone({ page }) {
   const [isDone, setIsDone] = useState(false);
 
   useEffect(() => {
-    let storedIsDone = localStorage.getItem(page);
-    if (storedIsDone) {
-      setIsDone(storedIsDone === "true");
+    if (typeof window !== "undefined") {
+      let storedIsDone = localStorage.getItem(page);
+      if (storedIsDone) {
+        setIsDone(storedIsDone === "true");
+      }
     }
   }, []);
 

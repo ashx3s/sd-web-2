@@ -11,11 +11,13 @@ function MultipleChoice({ question, choices, answer }) {
   answer = parseInt(answer) - 1;
 
   useEffect(() => {
-    let storedAnswer = localStorage.getItem(question + choices);
-    if (storedAnswer) {
-      storedAnswer = parseInt(storedAnswer);
-      setSelectedChoice(storedAnswer);
-      setIsCorrect(storedAnswer === answer);
+    if (typeof window !== "undefined") {
+      let storedAnswer = localStorage.getItem(question + choices);
+      if (storedAnswer) {
+        storedAnswer = parseInt(storedAnswer);
+        setSelectedChoice(storedAnswer);
+        setIsCorrect(storedAnswer === answer);
+      }
     }
   }, []);
 
