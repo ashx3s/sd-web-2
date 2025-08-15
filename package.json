@@ -1,6 +1,7 @@
 {
   "name": "sd-web-2",
   "version": "1.5",
+  "type": "module",
   "description": "Sait's software development diploma Web Dev 2 course",
   "scripts": {
     "copy-mdx": "node scripts/copy-mdx-files.js",

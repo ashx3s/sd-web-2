@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 export default {
   logo: (
@@ -36,8 +36,8 @@ export default {
   },
   primaryHue: { dark: 130, light: 130 },
   useNextSeoProps() {
-    const { asPath } = useRouter();
-    if (asPath !== "/") {
+    const pathname = usePathname();
+    if (pathname !== "/") {
       return {
         titleTemplate: "%s – Web Dev 2",
       };
