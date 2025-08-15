@@ -1,6 +1,6 @@
 import { usePathname } from "next/navigation";
-
-export default {
+import { DocsThemeConfig } from "nextra-theme-docs";
+const config: DocsThemeConfig = {
   logo: (
     <span>
       {" "}
@@ -30,7 +30,7 @@ export default {
     placeholder: "Search content...",
   },
 
-  docsRepositoryBase: "https://github.com/warsylewicz/webdev2/tree/main",
+  docsRepositoryBase: "https://github.com/ashx3s/sd-web-2/tree/main",
   footer: {
     text: "Programming is best learned by solving problems. If you want to learn more, create more problems.",
   },
@@ -47,3 +47,4 @@ export default {
     defaultMenuCollapseLevel: 1,
   },
 };
+export default config;

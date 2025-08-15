@@ -5,7 +5,7 @@
   "description": "Sait's software development diploma Web Dev 2 course",
   "scripts": {
     "copy-mdx": "node scripts/copy-mdx-files.js",
-    "dev": "npm run copy-mdx && next dev --turbopack",
+    "dev": "npm run copy-mdx && next dev",
     "build": "npm run copy-mdx && next build",
     "start": "next start"
   },
@@ -22,6 +22,7 @@
   "dependencies": {
     "@codesandbox/sandpack-react": "latest",
     "@codesandbox/sandpack-themes": "latest",
+    "@tailwindcss/postcss": "^4.1.12",
     "fs-extra": "^11.1.1",
     "glob": "^10.2.6",
     "next": "latest",
