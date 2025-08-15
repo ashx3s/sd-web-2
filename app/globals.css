@@ -1,4 +1,5 @@
 /* app/globals.css or your main CSS file */
+@import "tailwindcss";
 @import "nextra-theme-docs/style.css";
 
 :root {
