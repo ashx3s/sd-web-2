@@ -1,7 +1,7 @@
 {
-  "name": "webdev2",
-  "version": "1.1",
-  "description": "Web Dev 2",
+  "name": "sd-web-2",
+  "version": "1.5",
+  "description": "Sait's software development diploma Web Dev 2 course",
   "scripts": {
     "copy-mdx": "node scripts/copy-mdx-files.js",
     "dev": "npm run copy-mdx && next dev",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/warsylewicz/webdev2.git"
+    "url": "git+https://github.com/ashx3s/sd-web-2.git"
   },
-  "author": "Aaron Warsylewicz <aaron@wcz.ca>",
+  "author": "Ashlyn Knox, Aaron Warsylewicz <aaron@wcz.ca>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/warsylewicz/webdev2/issues"
+    "url": "https://github.com/ashx3s/sd-web-2/issues"
   },
-  "homepage": "https://github.com/warsylewicz/webdev2",
+  "homepage": "https://github.com/ashx3s/sd-web-2",
   "dependencies": {
     "@codesandbox/sandpack-react": "^2.6.7",
     "@codesandbox/sandpack-themes": "^2.0.21",
