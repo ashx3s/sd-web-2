@@ -1,5 +1,9 @@
 import nextra from "nextra";
 
-const withNextra = nextra({});
+const withNextra = nextra();
 
-export default withNextra();
+export default withNextra({
+  turbopack: {
+    resolveAlias: { "next-mdx-import-source-file": "./mdx-components.mjs" },
+  },
+});

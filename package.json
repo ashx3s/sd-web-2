@@ -5,7 +5,7 @@
   "description": "Sait's software development diploma Web Dev 2 course",
   "scripts": {
     "copy-mdx": "node scripts/copy-mdx-files.js",
-    "dev": "npm run copy-mdx && next dev",
+    "dev": "npm run copy-mdx && next dev --turbopack",
     "build": "npm run copy-mdx && next build",
     "start": "next start"
   },

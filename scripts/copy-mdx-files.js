@@ -4,7 +4,7 @@ import fs from "fs-extra";
 import { glob } from "glob";
 
 async function copyMdxFiles() {
-  const sourceDirectory = path.join(process.cwd(), "app");
+  const sourceDirectory = path.join(process.cwd(), "content");
   const targetDirectory = path.join(process.cwd(), "public", "mdx");
 
   // Remove the mdx directory if it exists
