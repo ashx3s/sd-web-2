@@ -1,6 +1,4 @@
-import { usePathname } from "next/navigation";
-import { DocsThemeConfig } from "nextra-theme-docs";
-const config: DocsThemeConfig = {
+const config = {
   logo: (
     <span>
       {" "}
@@ -29,22 +27,19 @@ const config: DocsThemeConfig = {
   search: {
     placeholder: "Search content...",
   },
-
   docsRepositoryBase: "https://github.com/ashx3s/sd-web-2/tree/main",
   footer: {
     text: "Programming is best learned by solving problems. If you want to learn more, create more problems.",
   },
   primaryHue: { dark: 130, light: 130 },
   useNextSeoProps() {
-    const pathname = usePathname();
-    if (pathname !== "/") {
-      return {
-        titleTemplate: "%s – Web Dev 2",
-      };
-    }
+    return {
+      titleTemplate: "%s – Web Dev 2",
+    };
   },
   sidebar: {
     defaultMenuCollapseLevel: 1,
   },
 };
+
 export default config;

@@ -1,27 +1,15 @@
-import { generateStaticParamsFor, importPage } from "nextra/pages";
-import { useMDXComponents as getMDXComponents } from "../../mdx-components.mjs";
+import { importPage } from "nextra/pages";
 
-export const generateStaticParams = generateStaticParamsFor("mdxPath");
+export default async function Page({ params, searchParams }) {
+  const { mdxPath } = await params;
 
-export async function generateMetadata(props) {
-  const params = await props.params;
-  const { metadata } = await importPage(params.mdxPath);
-  return metadata;
-}
+  try {
+    const { default: MDXContent } = await importPage(mdxPath);
 
-const Wrapper = getMDXComponents().wrapper;
-
-export default async function Page(props) {
-  const params = await props.params;
-  const {
-    default: MDXContent,
-    toc,
-    metadata,
-    sourceCode,
-  } = await importPage(params.mdxPath);
-  return (
-    <Wrapper toc={toc} metadata={metadata} sourceCode={sourceCode}>
-      <MDXContent {...props} params={params} />
-    </Wrapper>
-  );
+    return (
+      <MDXContent params={await params} searchParams={await searchParams} />
+    );
+  } catch (error) {
+    return <div>Page not found</div>;
+  }
 }
