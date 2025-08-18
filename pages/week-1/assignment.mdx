@@ -11,8 +11,9 @@ Follow and complete this guide to setup your development environment for the cou
 - indentation spaces to 2 for js, html, and css
 - set up [github ssh keys for repo security](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
   - you can use github desktop or git on the command line (demos in class will all be done command line)
+  - this is important because it allows secure passwordless connection between your computer and github **this is an industry standard setup that you'll be expected to understand for many jobs**
 - install [nodejs](https://nodejs.org/en)
-  - it's set up correctly if you can type `node` into your command line and get a node prompt
+  - it's set up correctly if you can type `node` into your command line and get a node prompt that looks similar to this (the version might be different and that's ok)
     - ```js
     Welcome to Node.js v22.15.0.
     Type ".help" for more information.
@@ -29,11 +30,12 @@ Let's test your development environment setup by forking a javascript, html, css
   - the console should not throw any errors
   - html should render and demonstrate semantic syntax usage
 - in the `README.md` file make a brief comment on what the differences between forking, cloning, and downloading are.
+- add a `.gitignore` file with `node_modules` added. (_while most frameworks will generate this for you, it's important to understand the relevance of this file and know to look for it_)
 
 ## Part 3: Assignment Submission
 
-In your section of the CPRG 306 course in Brightspace, Submit the following in the week 1 assignment space.
-- A link to your github repository
+In your section of the CPRG 306 course in Brightspace, Submit the following into the week 1 assignment page.
+- A link to your github repository (in the submission comment)
 - A .zip directory of your project (create from Github or your computer)
   - verify that you are not also zipping the node_modules directory.
 
@@ -46,6 +48,6 @@ _the following indicate what I'm looking for when I grade_
 - variable naming conventions and casing
 
 ### Code Management /5
-- Git commits (at least 2)
+- Git commits (at least 2 with meaningful commit messages)
 - Repo is up to date with .zip
 - README terminology note
