@@ -9,45 +9,72 @@ This assignment is designed to ensure that you have the correct working developm
 Follow and complete this guide to setup your development environment for the course: [Guide: Development Environment Setup](/guides-and-references/development-environment-setup.mdx)
 
 - indentation spaces to 2 for js, html, and css
-- set up [github ssh keys for repo security](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
+- set up [github ssh keys for repo security](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) (if you already haven't)
   - you can use github desktop or git on the command line (demos in class will all be done command line)
   - this is important because it allows secure passwordless connection between your computer and github **this is an industry standard setup that you'll be expected to understand for many jobs**
 - install [nodejs](https://nodejs.org/en)
-  - it's set up correctly if you can type `node` into your command line and get a node prompt that looks similar to this (the version might be different and that's ok)
-    - ```js
-    Welcome to Node.js v22.15.0.
-    Type ".help" for more information.
-    >
-    ```
 
-## Part 2: Accessing the Broken Code
+  - it's set up correctly if you can type `node` into your command line and get a node prompt that looks similar to this:
+    - ```js
+      Welcome to Node.js v22.15.0.
+      Type ".help" for more information.
+      >_
+      ```
+  - stick to **LTS** versions for Long Term Support and stable version features.
+
+### **Main Task**
+
+capture screenshot of node working on your command line.
+
+- demonstrate with `console.log("Hello from 'your name'")`
+- add the image to your project in the appropriately named directory
+
+## Part 2: Accessing & Fix the Broken Code
 
 Let's test your development environment setup by forking a javascript, html, css project to debug the errors in it.
+
 - Fork this repository and then clone your version down to your computer
-- [Code Repository](https://github.com/ashx3s/sd-web-2-community-events)
+- [Code Repository](https://github.com/ashx3s/)
 - There are logic and syntax errors in all of the files that need to be fixed
-  - there isn't necessarily a single solution for each problem, what I'm looking for is code that runs when using the [live server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
+  - there isn't necessarily a single solution for each problem
   - the console should not throw any errors
   - html should render and demonstrate semantic syntax usage
+  - css should be responsive and demonstrate accessible ui design
 - in the `README.md` file make a brief comment on what the differences between forking, cloning, and downloading are.
 - add a `.gitignore` file with `node_modules` added. (_while most frameworks will generate this for you, it's important to understand the relevance of this file and know to look for it_)
+
+### Main Task
+
+- Fix the html, css, and js
+- Outline your understanding of important git terms
 
 ## Part 3: Assignment Submission
 
 In your section of the CPRG 306 course in Brightspace, Submit the following into the week 1 assignment page.
+
 - A link to your github repository (in the submission comment)
+- A Github Pages link to the live site (also in comments)
 - A .zip directory of your project (create from Github or your computer)
-  - verify that you are not also zipping the node_modules directory.
+
+### Main Task
+
+- Validate before submission
+- Make sure the code runs effectively
+- Submit links and codebase
 
 ## Rubric 10 points (weighted 5% of your final grade)
-_the following indicate what I'm looking for when I grade_
 
 ### Code Quality /5
-- resolution of bugs
+
+- effective bug fixes
 - code organization (indentation, formatting etc)
-- variable naming conventions and casing
+- JS: clear variable names, conventions, and casing
+- CSS: functioning responsive design, accessible colour, effective use of visual hierarchy
+- HTML: Semantic html tags are used. W3C validation pass
 
 ### Code Management /5
+
 - Git commits (at least 2 with meaningful commit messages)
 - Repo is up to date with .zip
-- README terminology note
+- README terminology notes
+- Node CLI screenshot
