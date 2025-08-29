@@ -4,50 +4,67 @@
 
 This assignment is designed to ensure that you have the correct working development environment for the course and have access to the code demos.
 
+---
+
 ## Part 1: Development Environment Setup
 
-Follow and complete this guide to setup your development environment for the course: [Guide: Development Environment Setup](/guides-and-references/development-environment-setup.mdx)
+Follow the [Development Environment Setup Guide](/guides-and-references/development-environment-setup.mdx) to configure your machine for this course.
 
-- indentation spaces to 2 for js, html, and css
-- set up [github ssh keys for repo security](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
-  - you can use github desktop or git on the command line (demos in class will all be done command line)
-  - this is important because it allows secure passwordless connection between your computer and github **this is an industry standard setup that you'll be expected to understand for many jobs**
-- install [nodejs](https://nodejs.org/en)
-  - it's set up correctly if you can type `node` into your command line and get a node prompt that looks similar to this (the version might be different and that's ok)
-    - ```js
-    Welcome to Node.js v22.15.0.
-    Type ".help" for more information.
-    >
-    ```
+- Set indentation to **2 spaces** for JS, HTML, and CSS.
+- Set up [GitHub SSH keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) if you haven't already.
+  - SSH keys provide a secure, passwordless connection to GitHub and are an **industry standard**.
+- Install the **LTS** version of [Node.js](https://nodejs.org/en).
+  - To verify it's working, type `node` in your command line to open the Node.js prompt.
 
-## Part 2: Accessing the Broken Code
+### **Main Task: Screenshot Verification**
 
-Let's test your development environment setup by forking a javascript, html, css project to debug the errors in it.
-- Fork this repository and then clone your version down to your computer
-- [Code Repository](https://github.com/ashx3s/sd-web-2-community-events)
-- There are logic and syntax errors in all of the files that need to be fixed
-  - there isn't necessarily a single solution for each problem, what I'm looking for is code that runs when using the [live server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
-  - the console should not throw any errors
-  - html should render and demonstrate semantic syntax usage
-- in the `README.md` file make a brief comment on what the differences between forking, cloning, and downloading are.
-- add a `.gitignore` file with `node_modules` added. (_while most frameworks will generate this for you, it's important to understand the relevance of this file and know to look for it_)
+- Capture a screenshot of the Node.js prompt on your command line after running the following command:
+  - `console.log("Hello from 'your name'")`
+- Create a directory in your project for static assets (e.g., `public/` or `assets/`) and add your screenshot to it.
+
+---
+
+## Part 2: Accessing & Fixing the Broken Code
+
+Let's test your setup by debugging a simple project.
+
+- **Fork** the [starter code repository](https://github.com/ashx3s/sd-web-2-a1-code) and then **clone** your forked version to your computer.
+- Fix all logic and syntax errors in the HTML, CSS, and JavaScript files.
+  - The browser console must be free of errors.
+  - The HTML must pass the [W3C validator test](https://validator.w3.org/).
+  - The CSS must be responsive and use an accessible color scheme.
+- Organize all static assets (e.g., images from the broken project) into the asset directory you created in Part 1.
+- In `README.md`, briefly explain the difference between **forking**, **cloning**, and **downloading** a repository.
+- Add a `.gitignore` file and include `node_modules` in it.
+  - _Most frameworks generate this file, but it's important to understand its purpose._
+
+---
 
 ## Part 3: Assignment Submission
 
-In your section of the CPRG 306 course in Brightspace, Submit the following into the week 1 assignment page.
-- A link to your github repository (in the submission comment)
-- A .zip directory of your project (create from Github or your computer)
-  - verify that you are not also zipping the node_modules directory.
+Submit the following to the Week 1 assignment page in Brightspace.
 
-## Rubric 10 points (weighted 5% of your final grade)
-_the following indicate what I'm looking for when I grade_
+- A link to your **GitHub repository** in the submission comment.
+- A link to your live **GitHub Pages site**, also in the submission comment.
 
-### Code Quality /5
-- resolution of bugs
-- code organization (indentation, formatting etc)
-- variable naming conventions and casing
+---
+
+## Rubric: 15 points (5% of final grade)
+
+### Code Quality (HTML/CSS) /5
+
+- **HTML:** Semantic tags are used, and the code passes W3C validation.
+- **CSS:** The design is responsive, uses accessible colors, and demonstrates a clear visual hierarchy.
+- **Bug Fixes:** Errors in the HTML and CSS files are effectively corrected.
+
+### JavaScript /5
+
+- **Functionality:** All JavaScript logic and syntax errors are fixed.
+- **Conventions:** Code uses clear variable names, follows standard casing, and is well-formatted.
+- **Console:** The browser console is free of any errors or warnings.
 
 ### Code Management /5
-- Git commits (at least 2 with meaningful commit messages)
-- Repo is up to date with .zip
-- README terminology note
+
+- **Git Commits:** At least two commits with meaningful, descriptive messages are present.
+- **Documentation:** README terminology notes are clear and correct.
+- **Organization:** The Node.js screenshot and all other static assets are correctly placed in a dedicated asset folder.
