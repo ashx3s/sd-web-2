@@ -25,6 +25,10 @@ Here's a refresher on some of the most common HTML elements:
 - `<title>`: Specifies the title of the document, displayed in the browser's title bar or tab.
 - `<body>`: Contains the content that is displayed on the web page.
 
+#### A note on how this changes in app development
+
+_React, Vue, Angular, Svelte etc all have other ways of dealing with the doctype and head type details. So while it's good to refresh on this. You won't be writing html like this in this semester past assignment 1_
+
 ### Text Formatting Elements
 
 - `<h1>` to `<h6>`: Define headings, `<h1>` being the highest level.
@@ -69,6 +73,8 @@ Here's a refresher on some of the most common HTML elements:
 
 Remember, HTML elements are the building blocks of HTML pages. With HTML constructs, images and other objects, such as interactive forms, can be embedded into the rendered page. It provides a means to create structured documents by denoting structural semantics for text.
 
+---
+
 ## CSS
 
 CSS (Cascading Style Sheets) is the language we use to style an HTML document. It describes how HTML elements should be displayed, controlling layout, look, and feel of your web pages. CSS can save a lot of work, as it allows you to control the layout of multiple web pages all at once.
@@ -109,13 +115,21 @@ CSS Flexbox is a layout module that allows responsive elements within a containe
 - **Flex Container**: The parent element in which flex items are enclosed. `display: flex;` is applied to it.
 - **Flex Items**: The direct children of the flex container and can be laid out in any direction.
 
+---
+
 ## JavaScript
 
 JavaScript is the programming language that makes web pages interactive. It provides the ability to create dynamic responses on web pages and handle user interactions. In this refresher, we'll revisit some of the core JavaScript concepts you've learned before.
 
 ### Variables
 
-Variables in JavaScript are containers for storing data values. We use the `var`, `let`, or `const` keywords to declare variables.
+- Variables in JavaScript are containers for storing data values.
+- Avoid using var. This is globally scoped and can lead to unintended side effects.
+- Instead, make a clear code functionality decision with regards to scope and mutability between let and const
+
+#### Variable Declaration Types
+- `let`: mutable and good for when a variable content needs to change. Block scoped
+- `const`: non-mutable (but you can edit the contents of arrays and objects). also block scoped. It's generally a good practice to default to `const`
 
 ### Data Types
 
@@ -125,6 +139,7 @@ JavaScript has several built-in data types, including:
 - **String**: Represents a sequence of characters. Example: `let str = "Hello World";`
 - **Boolean**: Represents logical values, `true` or `false`.
 - **Object**: Represents an instance through which we can access properties. An object is a collection of properties, and a property is an association between a name (or key) and a value.
+- **Array**: Similar to a list in python. Arrays are iterable and you'll use these extensively within Javascript app development
 
 ### Operators
 
@@ -142,9 +157,16 @@ JavaScript supports conditional statements to control the flow of code execution
 
 Loops are used to repeatedly run a block of code until a certain condition is met. JavaScript supports several types of loops including `for`, `while`, and `do...while`.
 
+#### Array Methods
+
+Array methods like `.map()`, `.forEach()`, `.filter()`, `.reduce()` are fantastic for working with data that is fetched from a backend or api. React particularly uses `.map()` for rendering iterable data
+
 ### Functions
 
 Functions in JavaScript are blocks of code designed to perform a specific task. A JavaScript function is defined with the `function` keyword, followed by a name, followed by parentheses `()`.
+
+Arrow notation is an es6 convention for function declaration as well. This pattern has seen considerable adoption in frontend javascript development. It is different from `function` declarations in that it does not inherit `this`. **We will cover use cases as we dive into react development.
+
 
 ### DOM Manipulation
 
