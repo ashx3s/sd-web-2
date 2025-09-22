@@ -7,11 +7,45 @@
 - Start and complete [Week 3 Assignment](/week-3/assignment)
 
 ## CPR 306 Demo Site
-- [View Source Code on GitHub](https://github.com/ashx3s/cprg-306-demo-site)
 
+- [View Source Code on GitHub](https://github.com/ashx3s/cprg-306-demo-site)
 
 ### Slides
 
 import Slideshow from "/components/Slideshow";
 
 <Slideshow file="/week-3/slides" />
+
+---
+
+## Lab Activity: Scoping out Components
+
+### Context
+
+When creating components, you will likely be doing a mix of planning out code functionality and thinking through code organization as you write. However we often jump into writing code before we fully understand how it should work and thus be organized.
+
+**Objective**: Practice scoping out some components. You can do this for the assigned lab as preparation; or if you would like an extra challenge, reverse engineer component design from a design system like [material 3](https://m3.material.io/components)
+
+### Tasks
+
+- Pick a group of UI elements to create as components. Your main criteria is that the group and subsequent elements are reusable
+- Plan out the user stories and scope definitions of what the ui element needs to do
+  - Either in your `page.js` file, a markdown file, whiteboard, piece of paper (develope's choice)
+  - **Do not write code for this step**
+  - Answer the questions:
+    - What is/are the use case(s) of the UI element(s)? and who uses it?
+    - What is a minimal definition of done?
+    - What information will change in each application of the code?
+    - Is there any information or styling that will be static on each invocation of the code?
+- Consider how you will split up the code: (for the sake of the exercise, write your answers down)
+  - Will this be probably used in other files? if yes than it should be it's own component file
+  - Can the component be broken up into smaller elements? if yes, how does it make sense to split it up into pieces?
+  - What splitting is helpful for me to build this now? and what might be more useful to split up after it's been prototyped
+  - Does the component need a layout wrapper (ie: a list of grocery items would have the `GroceryItem.js` component
+    - but it might be useful to also have a `ListGroceryItems.js` component that handles an array of objects that are passed to the `GroceryItem` component.)
+- Submit your file or a screenshot of your planning into the teams chat thread created by your instructor
+
+## Rest of Lab Time
+
+- Work on your week 3 lab assignment
+- Use what you learned and found useful from the activity to improve your componentization methods
