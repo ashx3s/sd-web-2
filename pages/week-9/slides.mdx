@@ -6,26 +6,64 @@
 
 ## Agenda
 
-1. Authentication vs Authorization
-2. Firebase: Auth
-3. React: `children` prop, Context API, Custom Hooks
+1. Context API
+2. React: `children` prop, Custom Hooks
+3. Authentication vs Authorization
 4. Next.js: Environment Variables
-5. Coding Demo
+5. Firebase: Auth
+6. Coding Demo
 
 ---
 
-## Authentication vs Authorization
+## React Context
 
-- **Authentication**: Verifying the identity of a user
-- **Authorization**: Verifying what a user has access to
-- **Firebase Auth**: Service that provides authentication for web, mobile, and desktop applications
-- **OAuth**: Open standard for access delegation, commonly used as a way for Internet users to grant websites or applications access to their information on other websites but without giving them the passwords
+- A way to pass data through the component tree without having to pass props down manually at every level avoiding prop drilling
+- A global state that can be accessed from any component (e.g. user info, language, theme)
+- A context is an object that stores a value and can be accessed by any child component
+- It's like a global variable that can be accessed from any sub-component
+- It's like `props` but without having to pass them down manually
 
 ---
 
-## OAuth Sequence Diagram
+## React Context API
 
-![OAuth Flow](/images/week-9/sequence-diagram.png)
+- `createContext`: a function that creates a new context
+- `Context.Provider`: a component that passes the context to its children
+- `useContext`: a hook thatallows your to share state without passing down props
+
+---
+
+## Context Naming Conventions
+
+- PascalCase
+- Pattern: TermContext
+  - ie: `AuthContext.js`, `ThemeContext.js`
+- then store relevant custom hooks with their respective contexts
+
+---
+
+## useContext vs useState
+
+- useState manages local component state - it creates and controls a piece of state within a single component.
+- useContext doesn't create state at all - it's a distribution mechanism that lets components access values from somewhere up the tree without prop drilling.
+- useContext is great for things like: dark mode toggle, site layout toggles, authentication
+- They are often used together
+
+---
+
+## Use useState when:
+
+- State is only needed in one component (or its immediate children via props)
+- You want simplicity and explicit data flow
+- Performance matters (useState re-renders only that component)
+
+---
+
+## Use Context when:
+
+Multiple components at different nesting levels need the same data
+You're tired of prop drilling through 5 layers
+The data changes infrequently (theme, auth status, language)
 
 ---
 
@@ -47,26 +85,6 @@ export default function Page() {
   );
 }
 ```
-
----
-
-## React Context
-
-- A way to pass data through the component tree without having to pass props down manually at every level avoiding prop drilling
-- A global state that can be accessed from any component (e.g. user info, language, theme)
-- A context is an object that stores a value and can be accessed by any child component
-- It's like a global variable that can be accessed from any sub-component
-- It's like `props` but without having to pass them down manually
-
----
-
-## React Context API
-
-- `createContext`: a function that creates a new context
-- `Context.Provider`: a component that passes the context to its children
-- `useContext`: a hook that uses the context
-
-- Example: https://github.com/warsylewicz/webdev2-demos/tree/master/app/week-9-context
 
 ---
 
@@ -117,6 +135,41 @@ export default function Page() {
 ```
 
 `useCounter` is used to manage the state of a counter.
+
+---
+
+## Where to put hooks, contexts, helpers etc
+
+```
+src/
+├── app/                    # Next.js app router
+├── components/
+├── hooks/                  # Custom hooks
+│   ├── useCounter.js
+│   └── useLocalStorage.js
+├── contexts/              # Context providers + hooks together
+│   ├── ThemeContext.jsx
+│   ├── AuthContext.jsx
+│   └── CartContext.jsx
+└── lib/                   # Utilities, helpers, config
+
+
+```
+
+---
+
+## Authentication vs Authorization
+
+- **Authentication**: Verifying the identity of a user
+- **Authorization**: Verifying what a user has access to
+- **Firebase Auth**: Service that provides authentication for web, mobile, and desktop applications
+- **OAuth**: Open standard for access delegation, commonly used as a way for Internet users to grant websites or applications access to their information on other websites but without giving them the passwords
+
+---
+
+## OAuth Sequence Diagram
+
+![OAuth Flow](/images/week-9/sequence-diagram.png)
 
 ---
 
