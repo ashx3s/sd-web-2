@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 
 export default {
   logo: (
@@ -8,7 +7,7 @@ export default {
     </span>
   ),
   project: {
-    link: "https://github.com/warsylewicz/webdev2",
+    link: "http://github.com/ashx3s/sd-web-2",
   },
   chat: {
     link: process.env.NEXT_PUBLIC_INSTRUCTOR_TEAMS_CHAT,
@@ -29,12 +28,12 @@ export default {
   search: {
     placeholder: "Search content...",
   },
-
-  docsRepositoryBase: "https://github.com/warsylewicz/webdev2/tree/main",
+  docsRepositoryBase: "https://github.com/ashx3s/webdev2/tree/main",
   footer: {
     text: "Programming is best learned by solving problems. If you want to learn more, create more problems.",
   },
   primaryHue: { dark: 130, light: 130 },
+  /*
   useNextSeoProps() {
     const { asPath } = useRouter();
     if (asPath !== "/") {
@@ -43,6 +42,7 @@ export default {
       };
     }
   },
+  */
   sidebar: {
     defaultMenuCollapseLevel: 1,
   },
