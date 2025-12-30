@@ -5,7 +5,7 @@ const fs = require("fs-extra");
 const glob = require("glob");
 
 async function copyMdxFiles() {
-  const sourceDirectory = path.join(process.cwd(), "pages");
+  const sourceDirectory = path.join(process.cwd(), "app");
   const targetDirectory = path.join(process.cwd(), "public", "mdx");
 
   // Remove the mdx directory if it exists
