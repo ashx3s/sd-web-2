@@ -10,11 +10,9 @@ This week's assignment continues to build upon the Shopping List application we 
 
 Before starting this assignment, you should have completed the Week 8 Assignment and have a working shopping list application. If you have not completed the Week 8 assignment, you have three options:
 
-1. Use another student's Week 8 Assignment as a starting point for this week's assignment. Refer to the list of [student repositories](/student-work/github-accounts).
+1. Use your assignment solution from Week 3 as a starting point for this week's assignment. Refer to the [Week 3 Assignment](/week-3/assignment) for instructions.
 
-2. Use your assignment solution from Week 3 as a starting point for this week's assignment. Refer to the [Week 3 Assignment](/week-3/assignment) for instructions.
-
-3. Start from scratch. To practice authentication, you really just need a simple application that has a login page and a protected page.
+2. Start from scratch. To practice authentication, you really just need a simple application that has a login page and a protected page.
 
 ## Part 1: Create a Firebase Project
 
@@ -53,8 +51,8 @@ We will add a `page.js` file to the `week-9` folder later.
 
 ### Create Firebase Config
 
-- Create a new folder called `_utils` inside your `week-9` folder.
-- Create a file called `firebase.js` inside your `week-9/_utils` folder.
+- Create a new folder called `utils` inside the app folder
+- Create a file called `firebase.js` inside your `utils` folder.
 
 Use the following code for the contents of `firebase.js`.
 
@@ -98,7 +96,7 @@ NEXT_PUBLIC_FIREBASE_APP_ID=""
 
 ## Part 3: Create AuthContext and useAuth Hook
 
-In the `_utils` folder, create a file called `auth-context.js` and add the following code.
+In a `contexts` folder, create a file called `AuthContext.js` and add the following code.
 
 ```js copy
 "use client";
@@ -147,10 +145,10 @@ export const useUserAuth = () => {
 
 ## Part 4: Add AuthContextProvider to `layout.js`
 
-In the `week-9` folder, create a file called `layout.js` and add the following code.
+In the `layout.js` add the following code.
 
 ```js copy
-import { AuthContextProvider } from "./_utils/auth-context";
+import { AuthContextProvider } from "./contexts/AuthContext.js";
 
 export default function Layout({ children }) {
   return <AuthContextProvider>{children}</AuthContextProvider>;
@@ -165,7 +163,7 @@ The following code snippets may be helpful. _This is not a complete component!_
 
 ```js copy
 // Import the useUserAuth hook
-import { useUserAuth } from "./_utils/auth-context";
+import { useUserAuth } from "../contexts/AuthContext";
 
 // Use the useUserAuth hook to get the user object and the login and logout functions
 const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
@@ -192,9 +190,7 @@ Even though a user can't see a link to the shopping list page without being logg
 
 In the `week-9/shopping-list/page.js` file, check if the user is logged in by using the `useUserAuth` hook and if the `user` object is null, do not render the shopping list page. Optional: You can redirect the user to the landing page if you want.
 
-## Part 7: Deploy to Vercel (Optional)
-
-If you wish to deploy your application to Vercel, you will need to make the following changes.
+## Part 7: Deploy to Vercel
 
 <Steps>
 
@@ -225,16 +221,8 @@ A few things you can do to improve your application:
 - Add a profile page that displays the user's profile information.
 - Add other OAuth providers such as Google.
 
-## Example Output
-
-https://cprg306-assignments.vercel.app/week-9
-
-Also, try to go to the shopping list page directly without signing in [https://cprg306-assignments.vercel.app/week-9/shopping-list](https://cprg306-assignments.vercel.app/week-9/shopping-list)
-
 ## Assignment Submission
 
-The instructor will be able to find your assignment in your GitHub repository. Make sure you have committed and pushed your changes to GitHub before the assignment deadline.
-
-import AssignmentChecker from "/components/AssignmentChecker";
-
-<AssignmentChecker week="9" />
+- Submit a link to you project
+- Submit a link to the deployed vercel site
+- Screenshot your env file and attach the image to your submission
