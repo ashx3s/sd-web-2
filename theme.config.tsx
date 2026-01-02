@@ -8,7 +8,7 @@ export default {
     </span>
   ),
   project: {
-    link: "https://github.com/warsylewicz/webdev2",
+    link: "https://github.com/ashx3s/sd-web-2",
   },
   chat: {
     link: process.env.NEXT_PUBLIC_INSTRUCTOR_TEAMS_CHAT,
