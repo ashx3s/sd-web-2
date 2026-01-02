@@ -100,7 +100,7 @@ The data in Cloud Firestore will have the following structure.
 
 <Steps>
 
-### Update `_utils/firebase.js`
+### Update `utils/firebase.js`
 
 In the `firebase.js` file, add the following import statement:
 
@@ -121,7 +121,7 @@ Create a new folder called `_services` in your `week-10` folder. Create a new fi
 In the `shopping-list-service.js` file, add the following import statements:
 
 ```js
-import { db } from "../_utils/firebase";
+import { db } from "../utils/firebase";
 import { collection, getDocs, addDoc, query } from "firebase/firestore";
 ```
 
@@ -141,9 +141,9 @@ This function adds a new item to a specific user's list of items in Firestore. I
 
 ### Delete JSON data
 
-Delete the `shopping-list/items.json` file since we will no longer be using hard-coded data.
+Delete the `shopping-list/grocery-items.json` file since we will no longer be using hard-coded data.
 
-Remove the import statement for the `items.json` file from `shopping-list/page.js`.
+Remove the import statement for the `grocery-items.json` file from `shopping-list/page.js`.
 
 ### Import the `shopping-list-service.js` file
 
@@ -175,7 +175,7 @@ https://cprg306-assignments.vercel.app/week-10
 
 ## Assignment Submission
 
-The instructor will be able to find your assignment in your GitHub repository. Make sure you have committed and pushed your changes to GitHub before the assignment deadline.
+- submit the link to your github repo and the deployed site to brightspace
 
 import AssignmentChecker from "/components/AssignmentChecker";
 
