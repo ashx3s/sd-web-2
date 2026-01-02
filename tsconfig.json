@@ -18,6 +18,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "/components/*": ["./app/components/*"],
+      "components/*": ["./app/components/*"]
+    },
     "plugins": [
       {
         "name": "next"

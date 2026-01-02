@@ -4,7 +4,7 @@
   "description": "SAIT Software Development Diploma Web Dev 2 Course",
   "scripts": {
     "copy-mdx": "node scripts/copy-mdx-files.js",
-    "dev": "next dev",
+    "dev": "npm run copy-mdx && next dev",
     "build": "npm run copy-mdx && next build",
     "start": "next start"
   },
@@ -31,6 +31,7 @@
     "react-dom": "^19.2.3"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
     "@types/node": "18.11.10",
     "@types/react": "19.2.7",
     "autoprefixer": "^10.4.15",

@@ -1,3 +1,5 @@
+'use client';
+
 import React from "react";
 import { Sandpack } from "@codesandbox/sandpack-react";
 import { neoCyan } from "@codesandbox/sandpack-themes";

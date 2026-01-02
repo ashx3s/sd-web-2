@@ -165,7 +165,7 @@ console.log(multiplyByTwo(4)); // Output: 8
 
 In this example, the `multiplyBy` function returns a new function that multiplies its given argument by the value of `num1`. We then assign the return value of `multiplyBy(2)` to the variable `multiplyByTwo`, which is a function that multiplies its given argument by 2. We can then call `multiplyByTwo` with an argument of 4, which returns 8.
 
-import { Callout } from "nextra-theme-docs";
+import { Callout } from "nextra/components";
 
 <Callout type="info" emoji="️🆘">
   I know that concepts like arrow functions and higher order functions can seem
@@ -338,7 +338,7 @@ export function ButtonExample() {
   return <button onClick={handleClick}>Click me</button>;
 }
 ```
-
+```js
 export function ButtonExample() {
   const handleClick = () => {
     alert("Button clicked!");
@@ -347,7 +347,7 @@ export function ButtonExample() {
 }
 
 <ButtonExample />
-
+```
 **Detailed explanation:**
 
 - Component Definition: The component is defined as a function named ButtonExample. This is a functional component, which is the simplest type of component in React. Functional components are defined as functions that return JSX.
@@ -621,7 +621,7 @@ import { activity, solution } from "./activity.js";
 
 ### 💡 Hints
 
-import { Steps } from "nextra-theme-docs";
+import { Steps } from "nextra/components";
 
 <Steps>
 
