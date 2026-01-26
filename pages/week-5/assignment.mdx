@@ -2,114 +2,112 @@
 
 ## Overview
 
-For this week's assignment, you'll finish creating the `NewItem` component you started last week. This component will demonstrate your understanding of React state and forms. The NewItem component allows users to enter details about a new item they wish to add to a list. The form requires the following information:
+In this assignment, we will learn the basics of **State** and **Event Handling** in React by creating a "Controlled Component." You will build a form that allows users to create a new shopping list item.
 
-- Item Name
-- Quantity
-- Category
-
-React's `useState` hook is used to manage the state of each input field. When the form is submitted, an alert is displayed with the current state of these fields, simulating the addition of a new item. The form fields are then reset to their initial state.
-
-## Prerequisites
-
-If you did not complete Week 1 Assignment, complete the [Guide: Setting Up Your Development Environment](/guides-and-references/development-environment-setup) and send your GitHub username to the instructor.
-
-If you did not complete the Week 2 Assignment, complete the [Guide: How to Create a New Next.js Project](/guides-and-references/creating-new-nextjs-project).
-
-If you did not complete the Week 4 Assignment, you can use a textbox for the quantity field.
-
-## Part 1: Link to Week 5 Assignment
-
-Edit the project file `/app/page.js` and add a link to `week-5` in the list of links.
-
-## Part 2:
+For now, this form will not add the item to the list we built in Week 4. Instead, we will focus on successfully capturing the user's input and displaying it in an alert.
 
 import { Steps } from "nextra-theme-docs";
 
+## Part 1: Initial Setup
+
 <Steps>
+
+### Link to the Week 5 Page
+
+Edit the project file `/app/page.js` and add a link to `week-5`.
 
 ### Create the Folder and Files
 
-Create the folder `/app/week-5` and copy files `page.js` and `NewGroceryItem.js` from the `/app/week-4` folder to the new folder.
-
-### Initialize State Variables
-
-**Name Field**
-
-- Use the `useState` hook to create a state variable called `name` and a setter function called `setName`.
-- The initial value of `name` should be an empty string (`""`), indicating that the name field is initially blank.
-
-**Quantity**
-
-- Already completed in Week 4.
-
-**Category Field**
-
-- Use the `useState` hook to create a state variable called `category` and a setter function called `setCategory`.
-- The initial value of `category` should be `"produce"`, indicating that the category field is initially set to "Produce".
-
-### Create a Form Submission Handler
-
-Create a handleSubmit function. This function should:
-
-- Prevent the form's default submission behavior.
-- Create an `item` object with the current values of `name`, `quantity`, and `category`.
-- Log the item object to the console.
-- Display an alert with the current state of name, quantity, and category.
-- Reset the state variables to their initial values.
-
-### Render the Component
-
-In the return statement of your function, create a form that includes:
-
-**Name Field**
-
-- Create an input field of type text.
-- The value of the input field should be tied to the name state variable, meaning that it displays the current value of name.
-- Use the setName function in an onChange event handler to update the state of name as the user types into the field.
-- Add required attribute to the input field to ensure that the user cannot submit the form without providing a name.
-
-**Quantity**
-
-- To be completed in Week 6
-
-**Category Field**
-
-- Create a select element for the category.
-- The value of the select element should be tied to the category state variable.
-- Use the setCategory function in an onChange event handler to update the state of category as the user selects a different option.
-- Create various option elements within the select for each possible category ("Produce", "Dairy", "Bakery", "Meat", "Frozen Foods", "Canned Goods", "Dry Goods", "Beverages", "Snacks", "Household", "Other"). Each option should have a value that matches the category it represents.
-
-**Submit Button**
-
-- Create a submit button that triggers the handleSubmit function when clicked.
-
-### Style the Component
-
-Style the component using Tailwind CSS. You do not need to match the example output, but your component should be styled in a way that is visually appealing and easy to use.
-
-### Test Your Component
-
-Ensure that when the form is filled and submitted, an alert is displayed with the correct information and the form fields are reset.
+Create the folder `/app/week-5`.
+Create a file named `page.js` and a file named `new-item.js` inside it.
 
 </Steps>
 
-### Example Output
+## Part 2: The `NewItem` Component
 
-https://cprg306-assignments.vercel.app/week-5
+<Steps>
 
-## Part 3: Assignment Submission
+### Setup the Component
 
-- Submit the links to your repo and deployed site to brightspace
+In `new-item.js`, create a functional component named `NewItem`.
+Since this component will use interactivity (hooks), you must add the `"use client"` directive at the very top of the file.
 
-Ensure the following:
+### Initialize State
 
-- The instructor has your current GitHub username.
-- The GitHub repository is **public** and named exactly `cprg306-assignments`.
-- The new page is named exactly `week-5` (lowercase).
+Import `useState` from React.
+Create three state variables to manage the form inputs:
+
+1. `name`: Initialize as an empty string `""`.
+2. `quantity`: Initialize as `1`.
+3. `category`: Initialize as `"produce"`.
+
+### Create the Form UI
+
+The component should return a form with the following fields. Use Tailwind CSS to style the form so it is clean and accessible (e.g., max-width, background color, padding).
+
+1. **Name Field:**
+* An `<input>` of type `text`.
+* Set the `value` prop to your `name` state variable.
+* Use the `onChange` event to update the `name` state.
+* Set `required` to true.
+* *Style tip:* Use `w-full`, `p-2`, and `rounded-md`.
+
+
+2. **Quantity and Category Row:**
+* Group these two fields in a flex container so they sit side-by-side.
+* **Quantity Field:**
+* An `<input>` of type `number`.
+* Min: 1, Max: 99.
+* Set the `value` to your `quantity` state.
+* Update state on change.
+
+
+* **Category Field:**
+* A `<select>` element.
+* Set the `value` to your `category` state.
+* Update state on change.
+* **Options:** Create `<option>` tags for: Produce, Dairy, Bakery, Meat, Frozen Foods, Canned Goods, Dry Goods, Beverages, Snacks, Household, Other.
+
+
+
+
+3. **Submit Button:**
+* A `<button>` of type `submit`.
+* Label it "+".
+* Style it to look clickable (e.g., blue background, white text, hover effects).
+
+
+
+### Handle the Form Submission
+
+Create a function named `handleSubmit` inside your component.
+
+1. **Prevent Default:** Call `event.preventDefault()` so the page doesn't reload.
+2. **Create Object:** Create an `item` object with the current `name`, `quantity`, and `category`.
+3. **Log the Item:** `console.log` the item object to the console.
+4. **User Feedback:** Call `alert()` to display the details of the created item (e.g., "Added: Bread, quantity: 2, category: bakery").
+5. **Reset State:** Reset `name` to `""`, `quantity` to `1`, and `category` to `"produce"`.
+
+Connect this function to the `onSubmit` prop of your `<form>` element.
+
+</Steps>
+
+## Part 3: The Page Component
+
+<Steps>
+
+### Render the Form
+
+In `/app/week-5/page.js`:
+
+1. Import the `NewItem` component.
+2. Create a functional component named `Page`.
+3. Render the `NewItem` component inside a customized `<main>` layout (e.g., centered on the screen with a dark background).
+
+</Steps>
+
+## Part 4: Assignment Submission
+
+* Submit the links to your github repo and deployed site
 
 ---
-
-import AssignmentChecker from "/components/AssignmentChecker";
-
-<AssignmentChecker week="5" />

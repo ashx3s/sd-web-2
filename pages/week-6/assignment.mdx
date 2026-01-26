@@ -1,101 +1,149 @@
-# Week 4 Assignment
+# Week 6 Assignment
 
 ## Overview
 
-For this week's assignment, you'll begin creating a `NewItem` component using React for a Shopping List App. You will finish creating this component in Week 5.
+In this assignment, we will combine the components we built in Weeks 4 and 5 to create a fully functional "Shopping List" application.
 
-The NewItem component allows users to enter details about a new item they wish to add to a list which contains the following information:
-
-- Item Name
-- Quantity
-- Category
-
-For this week, we will focus just on the quantity.
-
-## Prerequisites
-
-If you did not complete Week 1 Assignment, complete the [Guide: Setting Up Your Development Environment](/guides-and-references/development-environment-setup) and send your GitHub username to the instructor.
-
-If you did not complete the Week 2 Assignment, complete the [Guide: How to Create a New Next.js Project](/guides-and-references/creating-new-nextjs-project).
-
-## Part 1: Link to Week 4 Assignment
-
-Edit the project file `/app/page.js` and add a link to `week-6` in the list of links.
-
-## Part 2:
+You will learn how to **Lift State Up** to a parent component so that sibling components (the form and the list) can communicate. You will also implement the sorting functionality within the list.
 
 import { Steps } from "nextra-theme-docs";
 
+## Part 1: Initial Setup
+
 <Steps>
+
+### Link to the Week 6 Page
+
+Edit the project file `/app/page.js` and add a link to `week-6`.
 
 ### Create the Folder and Files
 
-Create the folder `/app/week-6` and create files `page.js` and `NewGroceryItem.js` inside it.
+Create the folder `/app/week-6`.
 
-Edit `page.js` to be a Next.js page component that renders the NewItem component.
+1. **Copy Files:**
+* Copy `items.json`, `item.js`, and `item-list.js` from your **Week 4** folder.
+* Copy `new-item.js` from your **Week 5** folder.
 
-### Setup NewItem Component
 
-- Add the `"use client"` directive to the top of the file.
-- Import the useState hook from React.
+2. **Create Page:**
+* Create a new `page.js` file inside `/app/week-6`.
 
-### Initialize State Variables
 
-**Quantity**
-
-- Use the `useState` hook to create a state variable called `quantity` and a setter function called `setQuantity`.
-- The initial value of `quantity` should be `1`, indicating that the quantity field is initially set to 1.
-
-### Create `increment` and `decrement` Functions
-
-- Create a function called `increment` that increments the `quantity` state variable by 1. Ensure that the quantity does not exceed 20.
-- Create a function called `decrement` that decrements the `quantity` state variable by 1. Ensure that the quantity does not go below 1.
-
-import { Callout } from "nextra-theme-docs";
-
-<Callout type="info" emoji="️🙅">
-  Don't forget to never modify the state directly. Always use the setter
-  function provided by the `useState` hook, i.e. `setQuantity`.
-</Callout>
-
-### Render the Component
-
-In the return statement of your function, render the following:
-
-- The current quantity value.
-- Decrement button
-  - The button should call the `decrement` function when clicked.
-  - The button should be disabled if the quantity is 1 to indicate to the user that the quantity cannot go below 1.
-- Increment button
-  - The button should call the `increment` function when clicked.
-  - The button should be disabled if the quantity is 20 to indicate to the user that the quantity cannot exceed 20.
-
-### Style the Component
-
-Style the component using Tailwind CSS. You do not need to match the example output, but your component should be styled in a way that is visually appealing and easy to use.
-
-### Test Your Component
-
-Test your component by running the project and navigating to the `/week-6` page. Try clicking the increment and decrement buttons to ensure that the quantity is updated correctly. In addition, test that the quantity is limited between 1 and 20.
 
 </Steps>
 
-### Example Output
+## Part 2: Refactoring Components
 
-https://cprg306-assignments.vercel.app/week-6
+We need to modify our existing components to handle data flowing between them.
 
-## Part 3: Assignment Submission
+<Steps>
 
-- Submit the links to your repo and deployed site to brightspace
+### Update `Item` Component
 
-Ensure the following:
+No changes needed. It should still accept `name`, `quantity`, and `category` as props.
 
-- The instructor has your current GitHub username.
-- The GitHub repository is **public** and named exactly `cprg306-assignments`.
-- The new page is named exactly `week-6` (lowercase).
+### Update `NewItem` Component
 
----
+We need to modify the form so that instead of just alerting the user, it sends the new item data up to the parent component.
 
-import AssignmentChecker from "/components/AssignmentChecker";
+1. **Props:** Update the `NewItem` component function definition to accept `props` (or destructure `{ onAddItem }`).
+2. **Handle Submit:** Inside your `handleSubmit` function:
+* Generate a random `id` for the new item (you can use `Math.random().toString(36).substring(2, 9)` or the web API `crypto.randomUUID()`).
+* Create the `item` object with `id`, `name`, `quantity`, and `category`.
+* **Call the Prop:** Instead of `alert()`, call the function passed as a prop: `onAddItem(item)`.
+* Keep the state reset logic (clearing the form after submission).
 
-<AssignmentChecker week="4" />
+
+
+### Update `ItemList` Component
+
+We need to remove the hardcoded data from this component so it can accept the list from the parent.
+
+1. **Props:** Update the `ItemList` component to accept the `items` prop.
+2. **Remove Data Import:** Remove the import line for `items.json`. The data will now come from the props.
+3. **State for Sorting:**
+* Import `useState` from React.
+* Initialize a state variable `sortBy` (default to `"name"`).
+
+
+4. **Sorting Logic:**
+* Create a *sorted* version of the `items` prop based on the `sortBy` state.
+* *Note:* Do not mutate the original prop. Use `[...items].sort(...)`.
+* Sort by `name` or `category` depending on the state variable.
+
+
+5. **Sort Buttons:**
+* Render two buttons to toggle the `sortBy` state between "name" and "category".
+* Style the active button to look different (e.g., darker background).
+
+
+6. **Render:**
+* Map over the **sorted** items variable (not the prop directly) to render your `Item` components.
+
+
+
+</Steps>
+
+## Part 3: Building the App in `Page`
+
+Now we will wire everything together in the `Page` component. This component will hold the "Master State" of the list.
+
+<Steps>
+
+### Imports
+
+In `/app/week-6/page.js`:
+
+* Import `Item` (if needed), `ItemList`, and `NewItem`.
+* Import `itemsData` from `./items.json`.
+* Import `useState` from React.
+
+### Initialize State
+
+* Initialize a state variable named `items` with the data imported from `items.json`.
+
+### Create Event Handler
+
+* Create a function called `handleAddItem` that takes `newItem` as an argument.
+* This function should update the `items` state by adding the `newItem` to the existing array. (Remember to spread the previous state: `setItems([...items, newItem])`).
+
+### Render
+
+Return a `main` element containing:
+
+1. An `h1` header "Shopping List".
+2. The `NewItem` component.
+* Pass your `handleAddItem` function to the `onAddItem` prop.
+
+
+3. The `ItemList` component.
+* Pass your `items` state variable to the `items` prop.
+
+
+
+</Steps>
+
+## Part 4: Optional Extra Challenge
+
+Update the sorting in `ItemList` to support a "Group by Category" feature.
+
+* Add a third button "Group by Category".
+* If selected, the render method should group items by category headers, sorting both the categories and the items within them alphabetically.
+
+**Example Output:**
+
+<div className="border p-4 mt-4">
+**Bakery**
+
+* bread 🍞
+
+**Dairy**
+
+* eggs, dozen 🥚
+* milk, 4 L 🥛
+
+</div>
+
+## Part 5: Assignment Submission
+
+* Submit the links to your github repo and deployed site

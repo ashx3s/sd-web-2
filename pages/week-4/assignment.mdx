@@ -1,28 +1,27 @@
-# Week 6 Assignment
+# Week 4 Assignment
 
 ## Overview
 
-This week's assignment adds sorting functionality to the shopping list application. The source of the items will be from a JSON file, demonstrating how to load and use static data.
+In this assignment, we will focus on rendering lists in React. You will learn how to load static data from a JSON file and render it dynamically using the JavaScript `.map()` method. The goal is to become proficient in breaking down your UI into small, reusable components and passing data via props.
 
-import { Steps } from "nextra-theme-docs";
 
 ## Part 1: Initial Setup
 
 <Steps>
 
-### Link to the Week 6 Page
+### Link to the Week 4 Page
 
-Edit the project file `/app/page.js` and add a link to `week-4` in the list of links.
+Edit the project file `/app/page.js` (the landing page) and add a link to `week-4` in the list of links.
 
 ### Create the Folder and Files
 
-Create the folder `/app/week-4` and the files `page.js`, `item-list.js`, and `item.js` inside it. If you completed the Week 3 Assignment, you can copy the files from that assignment into this folder.
+Create the folder `/app/week-4` and the files `page.js`, `item-list.js`, `item.js`, and `items.json` inside it.
 
 ### `items.json`
 
-Create a file called `items.json` in the `/app/week-4` folder. This file contains the data for the shopping list. It is an array of objects, where each object represents an item in the list.
+This file contains the data for the shopping list. It is an array of objects, where each object represents an item in the list.
 
-Copy the following data into the file:
+Copy the following data into `/app/week-4/items.json`:
 
 ```json copy
 [
@@ -99,86 +98,73 @@ Copy the following data into the file:
     "category": "household"
   }
 ]
+
 ```
-
-### Build the `Item` Component
-
-No change from the Week 3 Assignment.
-
-> In `item.js`, create a functional component named `Item`. This component should accept `name`, `quantity`, and `category` as props and display them in a list item element.
-
-### Build the `Page` Component
-
-No change from the Week 3 Assignment.
-
-> In `page.js`, create a functional component named `Page` that returns a `main` element wrapped around an `h1` "Shopping List" header and the `ItemList` component.
 
 </Steps>
 
-## Part 2: Build the `ItemList` Component
+## Part 2: The Components
 
 <Steps>
 
-### Setup ItemList Component
+### Build the `Item` Component
 
-Remove all item variables (`const item1` etc.) from the `ItemList` component.
+In `item.js`, create a functional component named `Item`.
 
-Import the useState hook from React, the Item component, and the items from the JSON file.
+This component must accept `name`, `quantity`, and `category` as **props**. It should render these details in a list item (`<li>`) element, styled with Tailwind CSS to look organized (e.g., using a card-like appearance).
 
-### Initialize State Variable
+**Tip:** Ensure you are destructuring the props in the function arguments or accessing them via a `props` object.
 
-- Use the `useState` hook to create a state variable `sortBy` and its setter function `setSortBy`. This will be used to determine the sorting preference of the user.
-- Set the initial value of sortBy to `"name"`, indicating that the list should initially be sorted by name.
+### Build the `ItemList` Component
 
-### Sort the Items
+In `item-list.js`, create a functional component named `ItemList`.
 
-- Use JavaScript's sort function to sort the items array based on the `sortBy` state variable.
-- If sortBy is `"name"`, sort the items by their name property.
-- If sortBy is `"category"`, sort the items by their category property.
+1. **Imports:** Import the `Item` component you just created and the data from `items.json`.
+2. **Mapping:** Inside the component, use the JavaScript `map` function to loop through the `items` array.
+3. **Rendering:** For each item in the array, return an `Item` component.
+4. **Props:** Pass the `name`, `quantity`, and `category` from the data object to the `Item` component as props.
+5. **Keys:** Don't forget to provide a unique `key` prop for each component using the item's `id`.
 
-### Create Sort Buttons
+**Requirements:**
 
-- Create two buttons that allow the user to change the value of sortBy to `"name"` or `"category"`. These buttons should change the sorting of the items when clicked.
-- Use the `setSortBy` function in the `onClick` event handlers of these buttons to change the value of `sortBy`.
-- Use conditional rendering to change the background color of the buttons based on the current value of `sortBy`. This gives the user a visual indication of what the current sorting preference is.
+* Do not use `useState` or any state management.
+* Do not include any buttons or event handlers.
+* Focus strictly on ensuring data flows correctly from the JSON file -> `ItemList` -> `Item`.
 
-### Render the Items
+### Build the `Page` Component
 
-Use the `map` function to create a new `Item` component for each item in the items array. Don't forget to provide a unique key prop for each `Item` (you can use the item's id for this purpose).
+In `page.js`, create a functional component named `Page`.
+
+It should return a `main` element wrapped around an `h1` header ("Shopping List") and the `ItemList` component. Since `ItemList` is handling the data internally (loading the JSON), you do not need to pass props to `ItemList` at this stage.
 
 </Steps>
 
 ### Optional Extra Challenge
 
-Add a third button to the page that groups the list by category. The categories and items for each category are sorted alphabetically. Hints: use the JS `reduce` method and Tailwind CSS `capitalize`.
+Right now, the list renders in the order provided by the JSON file.
 
-For example:
+Without using state or buttons, try to render the list **grouped by category**. The result should look like this:
 
 <div className="border p-3">
 **Bakery**
-- bread 🍞
+
+* bread 🍞
 
 **Canned Goods**
 
-- pasta sauce 🍝
+* pasta sauce 🍝
 
 **Dairy**
 
-- eggs, dozen 🥚
-- milk, 4 L 🥛
+* eggs, dozen 🥚
+* milk, 4 L 🥛
 
-etc.
+...etc
 
 </div>
 
-### Example Output
-
-https://cprg306-assignments.vercel.app/week-4
+**Hint:** You can achieve this by manipulating the data *before* you map it. You might use the `.reduce()` method or multiple `.filter()` calls to organize the items into categories, and then map over those categories.
 
 ## Part 3: Assignment Submission
 
-- Submit the links to your github repo and deployed site
-
-import AssignmentChecker from "/components/AssignmentChecker";
-
-<AssignmentChecker week="6" />
+* Submit the links to your github repo and deployed site
