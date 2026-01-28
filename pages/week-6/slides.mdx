@@ -1,271 +1,206 @@
-# CPRG-306 Week 4
+# CPRG-306 Week 6
 
-# Interactivity
+# Interactivity with Forms
 
 ---
 
 ## Agenda
 
-- High level overview of assignment 1 feedback
-- Debrief from the lab warmup activity
-- Demo: Counter component
-- JavaScript: Function expressions, Arrays, Higher order functions, Arrow functions
-- React: Event handlers, useState Hook **continue in in person lab**
-- Tailwind CSS: States **Do next in person lab**
+- Assignment 2 Walkthrough
+- Tailwind Demo: Apply better design practices + componentization
+- React: conditional rendering, controlled components
+- Review HTML form elements (probably during in person)
+- JavaScript: event object, preventDefault (probably during in person)
+- Demo: Create a form component (probably during in person)
 
 ---
 
-## Function Declarations
+## Improving your Design Techniques
 
-- You are already familiar with function declarations
+Apply these principles and methods
 
-```js
-function greet(name) {
-  return "Hello, " + name;
-}
+- [Visual Hierarchy](https://youtu.be/qZWDJqY27bw?si=IgBDbSUQZsPpskRG)
+- [Repetition](https://youtu.be/8zhhc5pzE9Y?si=7FBX-may3I0YQMK7)
+- [Grid Systems and Alignment](https://youtu.be/9QRIjnMEXw8?si=H4SrAps2FP3ez3P8)
+- [Empty Space](https://youtu.be/3dESVj7-XzI?si=iJOOU9sN-NNGdCRK)
+- [Typography](https://youtu.be/yom0nogFN3k?si=RVehELkuV6Ue4iIQ)
 
-console.log(greet("Alice")); // "Hello, Alice"
+---
+
+## Tailwind Specific Workflow Tips
+
+- Progressive Enhancement with [breakpoints](https://tailwindcss.com/docs/responsive-design)
+- Use flex and grid systems to manage layouts
+- Do I need more empty space? the answer is probably yes
+- Typography: less is more
+
+---
+
+## Demo: Optimize A2 Visually
+
+- Standardize PageHeader component
+- Optimize the StudentInfo Card
+  - responsive design
+  - visual hierarchy
+  - typography
+
+---
+
+## Page Rendering Flow
+
+1. Server-Side Rendering
+
+- User navigates to a URL → server receives the request.
+- Components rendered on the server
+- Output: Static HTML + placeholders for client components.
+
+2. Client-Side Hydration
+
+- Initial Load: Browser displays HTML immediately
+- JavaScript Bundles: Downloaded in the background.
+- Hydration: React "revives" static HTML with interactivity.
+
+---
+
+## Hydration
+
+- Process where React attaches to server-rendered HTML.
+
+1. Matches DOM nodes to React components
+2. Initializes state/event listeners
+3. Makes the page interactive
+
+Why It Matters
+
+- Combines speed of SSR with interactivity of CSR
+- No "flash of empty content" (avoids pure client-side rendering).
+
+---
+
+## Client-Side Interactivity
+
+Post-Hydration
+
+- Client components take over (e.g., useState, useEffect).
+
+1. User clicks a button → onClick fires.
+2. useState updates component state.
+3. React re-renders only the changed parts (reconciliation).
+
+---
+
+## HTML: Forms
+
+- Form elements
+  - `<form>` - container for form controls
+  - `<input>` - text, password, radio, checkbox, etc.
+  - `<textarea>` - multi-line text input
+  - `<select>` - drop-down list
+  - `<button>` - submit, reset, or generic button
+
+---
+
+## HTML Forms Example
+
+```html
+<form action="/send" method="post">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required />
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required />
+  <label for="message">Message:</label>
+  <textarea id="message" name="message" required></textarea>
+  <button type="submit">Submit</button>
+</form>
 ```
 
+In this example, the form will be submitted to `/send` using the POST method.
+
 ---
 
-## Function Expressions
+## JavaScript: Event Object
 
-- Function expressions are another way to define functions
+- Event object is passed to event handlers
+- Contains information about the event
 
-```js
-let greet = function (name) => {
-  return "Hello, " + name;
+  - `type` - event type, e.g. `click`, `submit`
+  - `target` - element that triggered the event, e.g. button
+
+- `target` property is useful for form validation
+- e.g. `event.target.value` to get the value of an input field
+
+---
+
+## JavaScript: Event Object Example
+
+```jsx
+const getValues = (event) => {
+  // Get the value of the input field
+  console.log(event.target.value);
 };
 
-console.log(greet("Alice")); // "Hello, Alice"
+// In JSX, pass the event object to the event handler
+<input type="text" onChange={(e) => getValues(e)} />;
 ```
 
 ---
 
-## Function Expressions, cont'd
+## JavaScript: `preventDefault`
 
-- Function expressions can be assigned to variables
-- The function can be called using the variable name
-- Function expressions are not hoisted, i.e. they cannot be called before they are defined
+- Prevents the default behavior of an event
+- e.g. preventing form submission is useful for React applications
 
----
-
-## JavaScript: Arrays
-
-- Data structure that holds a list of items
-- Can hold any type of data, e.g. numbers, strings, objects, functions
-- Can be created using the `[]` syntax
-
-```js
-let empty = [];
-let numbers = [1, 2, 3, 4, 5];
-let names = ["Alice", "Bob", "Charlie"];
+```jsx
+const handleSubmit = (event) => {
+  event.preventDefault();
+  // Do something with the form data
+  // Form will not be submitted, i.e. /send will not be called
+};
 ```
 
 ---
 
-## JavaScript: Access elements
+## JavaScript: `&&`
 
-- Access elements using the index
-- Index starts at 0
-- Use the square brackets `[]` syntax
-
-```js
-let numbers = [1, 2, 3, 4, 5];
-console.log(numbers[0]); // 1
-```
+- Logical AND operator, evaluates to true if both operands are true
+- If the first operand is false, the second operand is not evaluated. Why?
 
 ---
 
-## JavaScript: Access elements example
-
 ```js
-let misc = [
-  1,
-  true,
-  "three",
-  { count: 4 },
-  function () {
-    return "5️⃣";
-  },
-];
-
-if (misc[1]) {
-  console.log(misc[2]); // "three"
-}
-
-let count = misc[3].count;
-console.log(count); // 4
-
-let fiveFunction = misc[4]; // function
-let emoji = fiveFunction(); // "5️⃣"
-console.log(emoji); // "5️⃣"
-```
-
----
-
-## Array destructuring
-
-- Array destructuring allows you to assign array elements to variables
-
-```js
-let numbers = [1, 2, 3, 4, 5];
-let [first, second, third] = numbers;
-
-console.log(first); // 1
-```
-
----
-
-## Higher order functions
-
-- Functions that take other functions as arguments or return functions
-
----
-
-## Higher order functions: Example
-
-- `calculate` is a higher order function that takes two numbers and a function as arguments
-
-```js
-let add = function (a, b) {
-  return a + b;
+const a = () => {
+  console.log("a");
+  return true;
+};
+const b = () => {
+  console.log("b");
+  return true;
+};
+const c = () => {
+  console.log("c");
+  return false;
 };
 
-let subtract = function (a, b) {
-  return a - b;
-};
-
-let calculate = function (a, b, operation) {
-  let result = operation(a, b);
-  return result;
-};
-
-console.log(calculate(5, 3, add)); // 8
+a() && b(); // a, b
+a() && c(); // a, c
+c() && a(); // c
 ```
 
 ---
 
-## Higher order functions: Example 2
+## React: Conditional Rendering
 
-```js
-// getMultiplier is a higher order function that returns a function
-let getMultiplier = function (factor) {
-  return function (number) {
-    return number * factor;
-  };
-};
+- You cannot put an `if` statement inside JSX
+- Use conditional rendering with the logical AND operator or ternary operator
 
-let double = getMultiplier(2); // double is a function that multiplies by 2
-let triple = getMultiplier(3); // triple is a function that multiplies by 3
-
-let result = double(5); // 10
-console.log(result);
-
-result = triple(5); // 15
-console.log(result);
-```
-
----
-
-## Arrow functions
-
-- Arrow functions are a shorthand syntax for defining functions
-
-```js
-let greet = (name) => {
-  return "Hello, " + name;
-};
-
-console.log(greet("Alice")); // "Hello, Alice"
-```
-
----
-
-## Arrow functions, cont'd
-
-- If the function body is a single expression, you can omit the curly braces
-- The expression is returned implicitly
-
-```js
-let greet = (name) => "Hello, " + name;
-let foo = () => "bar";
-
-console.log(greet("Alice")); // "Hello, Alice"
-console.log(foo()); // "bar"
-```
-
----
-
-## Function definition vs Function call
-
-- When a function is defined, it is not executed
-- The function is executed when it is called
-
-```js
-// greet is a function definition
-let greet = (name) => "Hello, " + name;
-console.log(greet); // [Function: greet]
-
-// greet is called with the argument "Alice"
-console.log(greet("Alice")); // "Hello, Alice"
-```
-
----
-
-## React: Event handlers
-
-- Event handlers are functions that are called when an event occurs
-- Example: Button component with an `onClick` event handler
-
-```js
-function Button() {
-  const showMessage = () => {
-    alert("Hello, world!");
-  };
-
-  return <button onClick={showMessage}>Click me</button>;
-}
-```
-
----
-
-## Other event handlers
-
-- `onClick` is just one of many event handlers
-- Other event handlers include `onMouseOver`, `onMouseOut`, `onFocus`, `onBlur`, `onChange`, `onSubmit`
-- Event handlers are camelCased
-
----
-
-## React: useState Hook
-
-- `useState` is a hook that allows you to add state to functional components
-- (Hooks are a category of function that allows base code to call extension code.)
-- `useState` returns an array with two elements: the current state and a function to update the state
-- `useState` takes an initial value as an argument
-
----
-
-## React: useState Hook, cont'd
-
-- Example: Counter component
-
-```js
-import { useState } from "react";
-
-export default function Counter() {
-  const [count, setCount] = useState(0);
-
-  const increment = () => {
-    setCount(count + 1);
-  };
+```jsx
+export default function Toggle() {
+  const [show, setShow] = useState(false);
 
   return (
     <div>
-      <p>{count}</p>
-      <button onClick={increment}>Increment</button>
+      <button onClick={() => setShow(!show)}>Toggle</button>
+      {show && <p>Visible</p>}
     </div>
   );
 }
@@ -273,78 +208,96 @@ export default function Counter() {
 
 ---
 
-## `useState` current state and update function
+## React: Conditional Rendering, cont'd
 
-- Do not mutate the state directly or React will not re-render the component
-- You must use the update function to update the state
+- Conditional rendering can be done with the ternary operator
+- Useful for rendering different components based on a condition
+- `condition ? true : false` - if condition is true, render true, otherwise render false
 
 ---
 
-## Next.js: "use client" Directive
-
-- Event handlers and `useState` are used to add interactivity
-- Interactivity is on the client side
-- By default, Next.js is a server-side rendered framework
-- To use client-side features, we need to tell Next.js to "use client"
-
-```js
-"use client"
-
-import { useState } from "react";
-
-export default function Page() {
-  ...
+```jsx
+export default function Alert({ type }) {
+  return (
+    <div className={type === "success" ? "bg-green-100" : "bg-red-100"}>
+      {type === "success" ? "Success" : "Error"}
+    </div>
+  );
 }
 ```
 
 ---
 
-## Tailwind CSS: Flexbox Layout
+## Template Literals
 
-- Tailwind CSS provides utility classes for Flexbox layout
-- Flexbox is a layout model that allows you to align and distribute space among items in a container
-- Flexbox is used to create responsive layouts
+- Use backticks to create a template literal
+- Use `${}` to insert a variable or expression
+- Better than concatenation because it's easier to read
 
----
-
-## Tailwind CSS: Flexbox Layout, cont'd
-
-- Example: Flexbox layout with Tailwind CSS classes
-
-```html
-<div className="flex justify-center max-w-lg h-24 bg-gray-200">
-  <div className="flex-1">Item 1</div>
-  <div className="flex-1">Item 2</div>
-  <div className="flex-1">Item 3</div>
-</div>
+```js
+const name = "Alice";
+console.log(`Hello, ${name}!`);
 ```
 
 ---
 
-## Tailwind CSS: Flexbox Layout, cont'd
+- Conditional rendering with template literals
 
-- `flex` class creates a flex container
-- `justify-center` class aligns items along the main axis
-- `max-w-lg` class sets the maximum width of the container
-- `h-24` class sets the height of the container
-- `flex-1` class sets the flex property of the items to 1 so they take up equal space
-
----
-
-## Tailwind CSS: States
-
-- Style elements based on their state, e.g. hover, focus, active
-- Creates interactive UIs
-- Example: Button with hover state
-
-```html
-<button
-  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
->
-  Button
-</button>
+```jsx
+export default function Alert({ type }) {
+  return (
+    <div
+      className={`text-lg ${
+        type === "success" ? "bg-green-100" : "bg-red-100"
+      } p-2`}
+    >
+      {type === "success" ? "Success" : "Error"}
+    </div>
+  );
+}
 ```
 
 ---
 
-## Counter component demo
+## React: Controlled Components
+
+- Controlled components are form elements whose value is controlled by React
+- Use the `useState` hook to manage the state of form elements
+- Use the `onChange` event handler to update the state
+- Use the `value` attribute to set the value of the form element
+- Use the `onSubmit` event handler to handle form submission
+
+---
+
+```jsx
+export default function ControlledComponent() {
+  const [favouriteWord, setFavouriteWord] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Do something with the form data
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={favouriteWord}
+        onChange={(e) => setFavouriteWord(e.target.value)}
+      />
+      <p>Your favourite word is: {favouriteWord}</p>
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+```
+
+---
+
+## Demo: Controlled Component
+
+- Create a form to add a dog with name, breed, and age
+- Use the useState hook to manage state of each form control
+- Use the onChange event handler to update state
+- Upon submission, create a dog object and display it in the console
+- Add validation using conditional rendering
