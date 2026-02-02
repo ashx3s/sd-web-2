@@ -4,15 +4,13 @@
 
 In this assignment, we will learn the basics of **State** and **Event Handling** in React by creating a "Controlled Component." You will build a form that allows users to create a new shopping list item.
 
-For now, this form will not add the item to the list we built in Week 4. Instead, we will focus on successfully capturing the user's input and displaying it in an alert.
-
 import { Steps } from "nextra-theme-docs";
 
 ## Part 1: Initial Setup
 
 <Steps>
 
-### Link to the Week 5 Page
+### Link to the Week 6 Page
 
 Edit the project file `/app/page.js` and add a link to `week-5`.
 
@@ -46,37 +44,33 @@ Create three state variables to manage the form inputs:
 The component should return a form with the following fields. Use Tailwind CSS to style the form so it is clean and accessible (e.g., max-width, background color, padding).
 
 1. **Name Field:**
-* An `<input>` of type `text`.
-* Set the `value` prop to your `name` state variable.
-* Use the `onChange` event to update the `name` state.
-* Set `required` to true.
-* *Style tip:* Use `w-full`, `p-2`, and `rounded-md`.
 
+- An `<input>` of type `text`.
+- Set the `value` prop to your `name` state variable.
+- Use the `onChange` event to update the `name` state.
+- Set `required` to true.
+- _Style tip:_ Use `w-full`, `p-2`, and `rounded-md`.
 
 2. **Quantity and Category Row:**
-* Group these two fields in a flex container so they sit side-by-side.
-* **Quantity Field:**
-* An `<input>` of type `number`.
-* Min: 1, Max: 99.
-* Set the `value` to your `quantity` state.
-* Update state on change.
 
+- Group these two fields in a flex container so they sit side-by-side.
+- **Quantity Field:**
+- An `<input>` of type `number`.
+- Min: 1, Max: 99.
+- Set the `value` to your `quantity` state.
+- Update state on change.
 
-* **Category Field:**
-* A `<select>` element.
-* Set the `value` to your `category` state.
-* Update state on change.
-* **Options:** Create `<option>` tags for: Produce, Dairy, Bakery, Meat, Frozen Foods, Canned Goods, Dry Goods, Beverages, Snacks, Household, Other.
-
-
-
+- **Category Field:**
+- A `<select>` element.
+- Set the `value` to your `category` state.
+- Update state on change.
+- **Options:** Create `<option>` tags for: Produce, Dairy, Bakery, Meat, Frozen Foods, Canned Goods, Dry Goods, Beverages, Snacks, Household, Other.
 
 3. **Submit Button:**
-* A `<button>` of type `submit`.
-* Label it "+".
-* Style it to look clickable (e.g., blue background, white text, hover effects).
 
-
+- A `<button>` of type `submit`.
+- Label it "+".
+- Style it to look clickable (e.g., blue background, white text, hover effects).
 
 ### Handle the Form Submission
 
@@ -98,7 +92,7 @@ Connect this function to the `onSubmit` prop of your `<form>` element.
 
 ### Render the Form
 
-In `/app/week-5/page.js`:
+In `/app/week-6/page.js`:
 
 1. Import the `NewItem` component.
 2. Create a functional component named `Page`.
@@ -108,6 +102,6 @@ In `/app/week-5/page.js`:
 
 ## Part 4: Assignment Submission
 
-* Submit the links to your github repo and deployed site
+- Submit the links to your github repo and deployed site
 
 ---

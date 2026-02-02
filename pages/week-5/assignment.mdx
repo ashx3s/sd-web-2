@@ -2,7 +2,7 @@
 
 ## Overview
 
-In this assignment, we will combine the components we built in Weeks 4 and 5 to create a fully functional "Shopping List" application.
+In this assignment, we will combine the components we built in Weeks 4 to create a fully functional "Shopping List" application.
 
 You will learn how to **Lift State Up** to a parent component so that sibling components (the form and the list) can communicate. You will also implement the sorting functionality within the list.
 
@@ -12,23 +12,22 @@ import { Steps } from "nextra-theme-docs";
 
 <Steps>
 
-### Link to the Week 6 Page
+### Link to the Week 5 Page
 
-Edit the project file `/app/page.js` and add a link to `week-6`.
+Edit the project file `/app/page.js` and add a link to `week-5`.
 
 ### Create the Folder and Files
 
-Create the folder `/app/week-6`.
+Create the folder `/app/week-5`.
 
 1. **Copy Files:**
-* Copy `items.json`, `item.js`, and `item-list.js` from your **Week 4** folder.
-* Copy `new-item.js` from your **Week 5** folder.
 
+- Copy `items.json`, `item.js`, and `item-list.js` from your **Week 4** folder.
+- Copy `new-item.js` from your **Week 5** folder.
 
 2. **Create Page:**
-* Create a new `page.js` file inside `/app/week-6`.
 
-
+- Create a new `page.js` file inside `/app/week-5`.
 
 </Steps>
 
@@ -48,12 +47,11 @@ We need to modify the form so that instead of just alerting the user, it sends t
 
 1. **Props:** Update the `NewItem` component function definition to accept `props` (or destructure `{ onAddItem }`).
 2. **Handle Submit:** Inside your `handleSubmit` function:
-* Generate a random `id` for the new item (you can use `Math.random().toString(36).substring(2, 9)` or the web API `crypto.randomUUID()`).
-* Create the `item` object with `id`, `name`, `quantity`, and `category`.
-* **Call the Prop:** Instead of `alert()`, call the function passed as a prop: `onAddItem(item)`.
-* Keep the state reset logic (clearing the form after submission).
 
-
+- Generate a random `id` for the new item (you can use `Math.random().toString(36).substring(2, 9)` or the web API `crypto.randomUUID()`).
+- Create the `item` object with `id`, `name`, `quantity`, and `category`.
+- **Call the Prop:** Instead of `alert()`, call the function passed as a prop: `onAddItem(item)`.
+- Keep the state reset logic (clearing the form after submission).
 
 ### Update `ItemList` Component
 
@@ -62,25 +60,24 @@ We need to remove the hardcoded data from this component so it can accept the li
 1. **Props:** Update the `ItemList` component to accept the `items` prop.
 2. **Remove Data Import:** Remove the import line for `items.json`. The data will now come from the props.
 3. **State for Sorting:**
-* Import `useState` from React.
-* Initialize a state variable `sortBy` (default to `"name"`).
 
+- Import `useState` from React.
+- Initialize a state variable `sortBy` (default to `"name"`).
 
 4. **Sorting Logic:**
-* Create a *sorted* version of the `items` prop based on the `sortBy` state.
-* *Note:* Do not mutate the original prop. Use `[...items].sort(...)`.
-* Sort by `name` or `category` depending on the state variable.
 
+- Create a _sorted_ version of the `items` prop based on the `sortBy` state.
+- _Note:_ Do not mutate the original prop. Use `[...items].sort(...)`.
+- Sort by `name` or `category` depending on the state variable.
 
 5. **Sort Buttons:**
-* Render two buttons to toggle the `sortBy` state between "name" and "category".
-* Style the active button to look different (e.g., darker background).
 
+- Render two buttons to toggle the `sortBy` state between "name" and "category".
+- Style the active button to look different (e.g., darker background).
 
 6. **Render:**
-* Map over the **sorted** items variable (not the prop directly) to render your `Item` components.
 
-
+- Map over the **sorted** items variable (not the prop directly) to render your `Item` components.
 
 </Steps>
 
@@ -92,20 +89,20 @@ Now we will wire everything together in the `Page` component. This component wil
 
 ### Imports
 
-In `/app/week-6/page.js`:
+In `/app/week-5/page.js`:
 
-* Import `Item` (if needed), `ItemList`, and `NewItem`.
-* Import `itemsData` from `./items.json`.
-* Import `useState` from React.
+- Import `Item` (if needed), `ItemList`, and `NewItem`.
+- Import `itemsData` from `./items.json`.
+- Import `useState` from React.
 
 ### Initialize State
 
-* Initialize a state variable named `items` with the data imported from `items.json`.
+- Initialize a state variable named `items` with the data imported from `items.json`.
 
 ### Create Event Handler
 
-* Create a function called `handleAddItem` that takes `newItem` as an argument.
-* This function should update the `items` state by adding the `newItem` to the existing array. (Remember to spread the previous state: `setItems([...items, newItem])`).
+- Create a function called `handleAddItem` that takes `newItem` as an argument.
+- This function should update the `items` state by adding the `newItem` to the existing array. (Remember to spread the previous state: `setItems([...items, newItem])`).
 
 ### Render
 
@@ -113,13 +110,12 @@ Return a `main` element containing:
 
 1. An `h1` header "Shopping List".
 2. The `NewItem` component.
-* Pass your `handleAddItem` function to the `onAddItem` prop.
 
+- Pass your `handleAddItem` function to the `onAddItem` prop.
 
 3. The `ItemList` component.
-* Pass your `items` state variable to the `items` prop.
 
-
+- Pass your `items` state variable to the `items` prop.
 
 </Steps>
 
@@ -127,23 +123,23 @@ Return a `main` element containing:
 
 Update the sorting in `ItemList` to support a "Group by Category" feature.
 
-* Add a third button "Group by Category".
-* If selected, the render method should group items by category headers, sorting both the categories and the items within them alphabetically.
+- Add a third button "Group by Category".
+- If selected, the render method should group items by category headers, sorting both the categories and the items within them alphabetically.
 
 **Example Output:**
 
 <div className="border p-4 mt-4">
 **Bakery**
 
-* bread 🍞
+- bread 🍞
 
 **Dairy**
 
-* eggs, dozen 🥚
-* milk, 4 L 🥛
+- eggs, dozen 🥚
+- milk, 4 L 🥛
 
 </div>
 
 ## Part 5: Assignment Submission
 
-* Submit the links to your github repo and deployed site
+- Submit the links to your github repo and deployed site
