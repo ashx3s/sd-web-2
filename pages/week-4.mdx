@@ -13,3 +13,126 @@
 import Slideshow from "/components/Slideshow";
 
 <Slideshow file="/week-4/slides" />
+
+## Lab Activity
+
+You'll revisit your practice repos from the previous activity, working in pairs to create a new page that displays a collection of items using React components and the map() method.
+
+### Part 1: Planning & Data Setup (20 minutes)
+
+#### Step 1: Form Pairs & Choose Working Structure
+
+Option A (Preferred): Partner with **one** person from your previous group
+
+Review each other's existing repos
+Decide whose repo you'll work in for this lab
+Work together on one project
+
+Option B (If needed): If pairing from your previous group doesn't work
+
+Partner with someone outside your group
+Each person works in their own repo
+Collaborate on patterns and approaches, but develop your own content
+
+#### Step 2: Identify Your Collection
+
+Based on your site's topic, choose something that can be represented as a collection of similar items.
+Examples:
+
+Sports site → Teams in a league, players on a roster, games in a season
+Music site → Albums, artists, playlists, songs
+Gaming site → Game titles, characters, achievements
+Food site → Recipes, restaurants, ingredients
+
+#### Step 3: Create Your Data File
+
+Create a new directory to for the page route (and data)
+Inside, create either items.js or items.json
+Build a collection of 3-12 items with consistent properties
+
+Each item should have 3-5 properties minimum:
+javascript// Example: data/teams.js
+
+```js
+export const teams = [
+  {
+    id: 1,
+    name: "Thunder Bears",
+    city: "Portland",
+    wins: 42,
+    image: "/placeholder.jpg",
+  },
+  // ... 2-11 more items
+];
+```
+
+**Tips:**
+
+- Use the same placeholder image for all items initially
+- You can use AI to help generate realistic content
+- Keep properties consistent across all items
+
+### Part 2: Build Your Components (50 minutes)
+
+#### Step 4: Create Your Page File
+
+Create a new page file (e.g., teams.jsx, gallery.jsx, etc.)
+Import your data at the top
+Set up the basic page structure
+
+#### Step 5: Plan Your Component Structure
+
+Minimum requirement: 2 components + the page
+Think about separation of concerns:
+
+- What should be a reusable component?
+- What logic belongs in each component?
+- How will data flow through props?
+
+Example structure:
+
+Page component (contains the collection)
+Card/Item component (receives individual item via props)
+Optional: Header, Container, or other layout components
+
+#### Step 6: Choose Your Layout
+
+- Pick ONE of these layout patterns using Tailwind CSS:
+  - Option A: Horizontal Scroll Section
+  - Option B: Three-Card Flex Layout
+  - Option C: Grid Gallery
+
+#### Step 7: Implement Map Iteration
+
+Use the map() method to iterate over your collection and render components:
+
+**Remember:**
+
+- Always include a unique key prop
+- Pass data through props to child components
+- Keep your component logic focused and reusable
+
+#### Step 8: Style with Tailwind
+
+- Apply Tailwind classes to match your chosen layout
+- Ensure responsive design (consider mobile, tablet, desktop)
+- Keep styling consistent across components
+
+### Part 3: Testing & Refinement (20 minutes)
+
+- Test your page in the browser
+- Verify all items render correctly
+- Check responsive behavior at different screen sizes
+- Ensure components receive and display props properly
+- Clean up any console errors or warnings
+
+### Debrief
+
+After we'll have a class discussion
+
+- How did you decide what should be a separate component versus keeping logic in the page? Walk us through your reasoning.
+- What challenges did you face when determining component boundaries? Would you restructure anything now?
+- Did you create more than the minimum 2 components? Why or why not?
+- How did you decide what data to pass as props? Did you pass the entire object or individual properties?
+- Which layout option did you choose and why? How did Tailwind make this easier or harder?
+- If you were to add one new feature to your collection page, what would it be and how would you implement it?
