@@ -2,144 +2,71 @@
 
 ## Overview
 
-In this assignment, we will combine the components we built in Weeks 4 to create a fully functional "Shopping List" application.
-
-You will learn how to **Lift State Up** to a parent component so that sibling components (the form and the list) can communicate. You will also implement the sorting functionality within the list.
+In this assignment, we will learn the basics of State and Event Handling in React by creating a "Controlled Component." You will build a form that allows users to create a new shopping list item.
 
 import { Steps } from "nextra-theme-docs";
 
-## Part 1: Initial Setup
+### Part 1: Initial Setup
 
-<Steps>
+- Link to the Week 5 Page
+- Edit the project file `/app/page.js` and add a link to week-5.
+- Create the Folder and Files
+- Create the folder /app/week-5.
+- Create a file named `page.js` and a file named `NewItem.js` inside it.
 
-### Link to the Week 5 Page
+### Part 2: The NewItem Component
 
-Edit the project file `/app/page.js` and add a link to `week-5`.
+- Setup the Component
+- In NewItem.js, create a functional component named NewItem.
+  Since this component will use interactivity (hooks), you must add the "use client" directive at the very top of the file.
+- Initialize State
+- Import useState from React.
+- Create three state variables to manage the form inputs:
+  - name: Initialize as an empty string "".
+  - quantity: Initialize as 1.
+  - category: Initialize as "produce".
 
-### Create the Folder and Files
+- **Create the Form UI**
+- The component should return a form with the following fields. Use Tailwind CSS to style the form so it is clean and accessible (e.g., max-width, background color, padding).
+- Name Field:
+  - An input of type text.
+  - Set the value prop to your name state variable.
+  - Use the onChange event to update the name state.
+  - Set required to true.
+  - Style tip: Use w-full, p-2, and rounded-md.
+- Quantity and Category Row:
+  - Group these two fields in a flex container so they sit side-by-side.
+  - Quantity Field:
+  - An input of type number.
+  - Min: 1, Max: 99.
+  - Set the value to your quantity state.
+  - Update state on change.
+- Category Field:
+  - A select element.
+  - Set the value to your category state.
+  - Update state on change.
+  - Options: Create option tags for: Produce, Dairy, Bakery, Meat, Frozen Foods, Canned Goods, Dry Goods, Beverages, Snacks, Household, Other.
+- Submit Button:
+  - A button of type submit.
+  - Label it "+".
+  - Style it to look clickable (e.g., blue background, white text, hover effects).
+- Handle the Form Submission
+  - Create a function named handleSubmit inside your component.
+    - Prevent Default: Call event.preventDefault() so the page doesn't reload.
+    - Create Object: Create an item object with the current name, quantity, and category.
+    - Log the Item: console.log the item object to the console.
+    - User Feedback: Call alert() to display the details of the created item (e.g., "Added: Bread, quantity: 2, category: bakery").
+    - Reset State: Reset name to "", quantity to 1, and category to "produce".
+  - Connect this function to the onSubmit prop of your form element.
 
-Create the folder `/app/week-5`.
+### Part 3: The Page Component
 
-1. **Copy Files:**
+- Render the Form
+  - In /app/week-5/page.js:
+    - Import the NewItem component.
+    - Create a functional component named Page.
+    - Render the NewItem component inside a customized main layout (e.g., centered on the screen with a dark background).
 
-- Copy `items.json`, `item.js`, and `item-list.js` from your **Week 4** folder.
-- Copy `new-item.js` from your **Week 5** folder.
-
-2. **Create Page:**
-
-- Create a new `page.js` file inside `/app/week-5`.
-
-</Steps>
-
-## Part 2: Refactoring Components
-
-We need to modify our existing components to handle data flowing between them.
-
-<Steps>
-
-### Update `Item` Component
-
-No changes needed. It should still accept `name`, `quantity`, and `category` as props.
-
-### Update `NewItem` Component
-
-We need to modify the form so that instead of just alerting the user, it sends the new item data up to the parent component.
-
-1. **Props:** Update the `NewItem` component function definition to accept `props` (or destructure `{ onAddItem }`).
-2. **Handle Submit:** Inside your `handleSubmit` function:
-
-- Generate a random `id` for the new item (you can use `Math.random().toString(36).substring(2, 9)` or the web API `crypto.randomUUID()`).
-- Create the `item` object with `id`, `name`, `quantity`, and `category`.
-- **Call the Prop:** Instead of `alert()`, call the function passed as a prop: `onAddItem(item)`.
-- Keep the state reset logic (clearing the form after submission).
-
-### Update `ItemList` Component
-
-We need to remove the hardcoded data from this component so it can accept the list from the parent.
-
-1. **Props:** Update the `ItemList` component to accept the `items` prop.
-2. **Remove Data Import:** Remove the import line for `items.json`. The data will now come from the props.
-3. **State for Sorting:**
-
-- Import `useState` from React.
-- Initialize a state variable `sortBy` (default to `"name"`).
-
-4. **Sorting Logic:**
-
-- Create a _sorted_ version of the `items` prop based on the `sortBy` state.
-- _Note:_ Do not mutate the original prop. Use `[...items].sort(...)`.
-- Sort by `name` or `category` depending on the state variable.
-
-5. **Sort Buttons:**
-
-- Render two buttons to toggle the `sortBy` state between "name" and "category".
-- Style the active button to look different (e.g., darker background).
-
-6. **Render:**
-
-- Map over the **sorted** items variable (not the prop directly) to render your `Item` components.
-
-</Steps>
-
-## Part 3: Building the App in `Page`
-
-Now we will wire everything together in the `Page` component. This component will hold the "Master State" of the list.
-
-<Steps>
-
-### Imports
-
-In `/app/week-5/page.js`:
-
-- Import `Item` (if needed), `ItemList`, and `NewItem`.
-- Import `itemsData` from `./items.json`.
-- Import `useState` from React.
-
-### Initialize State
-
-- Initialize a state variable named `items` with the data imported from `items.json`.
-
-### Create Event Handler
-
-- Create a function called `handleAddItem` that takes `newItem` as an argument.
-- This function should update the `items` state by adding the `newItem` to the existing array. (Remember to spread the previous state: `setItems([...items, newItem])`).
-
-### Render
-
-Return a `main` element containing:
-
-1. An `h1` header "Shopping List".
-2. The `NewItem` component.
-
-- Pass your `handleAddItem` function to the `onAddItem` prop.
-
-3. The `ItemList` component.
-
-- Pass your `items` state variable to the `items` prop.
-
-</Steps>
-
-## Part 4: Optional Extra Challenge
-
-Update the sorting in `ItemList` to support a "Group by Category" feature.
-
-- Add a third button "Group by Category".
-- If selected, the render method should group items by category headers, sorting both the categories and the items within them alphabetically.
-
-**Example Output:**
-
-<div className="border p-4 mt-4">
-**Bakery**
-
-- bread 🍞
-
-**Dairy**
-
-- eggs, dozen 🥚
-- milk, 4 L 🥛
-
-</div>
-
-## Part 5: Assignment Submission
+### Part 4: Assignment Submission
 
 - Submit the links to your github repo and deployed site
