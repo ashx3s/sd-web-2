@@ -1,4 +1,4 @@
-`"use client";
+const Page = `"use client";
 
 import { useState } from "react";
 

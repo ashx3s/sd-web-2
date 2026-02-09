@@ -6,12 +6,11 @@
 
 ## Agenda
 
-- Assignment 2 Walkthrough
-- Tailwind Demo: Apply better design practices + componentization
+- Tips to Improve your Design Skills
 - React: conditional rendering, controlled components
-- Review HTML form elements (probably during in person)
-- JavaScript: event object, preventDefault (probably during in person)
-- Demo: Create a form component (probably during in person)
+- Review HTML form elements
+- JavaScript: event object, preventDefault
+- Demo: Create a form component
 
 ---
 
@@ -33,16 +32,6 @@ Apply these principles and methods
 - Use flex and grid systems to manage layouts
 - Do I need more empty space? the answer is probably yes
 - Typography: less is more
-
----
-
-## Demo: Optimize A2 Visually
-
-- Standardize PageHeader component
-- Optimize the StudentInfo Card
-  - responsive design
-  - visual hierarchy
-  - typography
 
 ---
 
@@ -86,105 +75,6 @@ Post-Hydration
 1. User clicks a button → onClick fires.
 2. useState updates component state.
 3. React re-renders only the changed parts (reconciliation).
-
----
-
-## HTML: Forms
-
-- Form elements
-  - `<form>` - container for form controls
-  - `<input>` - text, password, radio, checkbox, etc.
-  - `<textarea>` - multi-line text input
-  - `<select>` - drop-down list
-  - `<button>` - submit, reset, or generic button
-
----
-
-## HTML Forms Example
-
-```html
-<form action="/send" method="post">
-  <label for="name">Name:</label>
-  <input type="text" id="name" name="name" required />
-  <label for="email">Email:</label>
-  <input type="email" id="email" name="email" required />
-  <label for="message">Message:</label>
-  <textarea id="message" name="message" required></textarea>
-  <button type="submit">Submit</button>
-</form>
-```
-
-In this example, the form will be submitted to `/send` using the POST method.
-
----
-
-## JavaScript: Event Object
-
-- Event object is passed to event handlers
-- Contains information about the event
-
-  - `type` - event type, e.g. `click`, `submit`
-  - `target` - element that triggered the event, e.g. button
-
-- `target` property is useful for form validation
-- e.g. `event.target.value` to get the value of an input field
-
----
-
-## JavaScript: Event Object Example
-
-```jsx
-const getValues = (event) => {
-  // Get the value of the input field
-  console.log(event.target.value);
-};
-
-// In JSX, pass the event object to the event handler
-<input type="text" onChange={(e) => getValues(e)} />;
-```
-
----
-
-## JavaScript: `preventDefault`
-
-- Prevents the default behavior of an event
-- e.g. preventing form submission is useful for React applications
-
-```jsx
-const handleSubmit = (event) => {
-  event.preventDefault();
-  // Do something with the form data
-  // Form will not be submitted, i.e. /send will not be called
-};
-```
-
----
-
-## JavaScript: `&&`
-
-- Logical AND operator, evaluates to true if both operands are true
-- If the first operand is false, the second operand is not evaluated. Why?
-
----
-
-```js
-const a = () => {
-  console.log("a");
-  return true;
-};
-const b = () => {
-  console.log("b");
-  return true;
-};
-const c = () => {
-  console.log("c");
-  return false;
-};
-
-a() && b(); // a, b
-a() && c(); // a, c
-c() && a(); // c
-```
 
 ---
 
@@ -259,6 +149,75 @@ export default function Alert({ type }) {
 
 ---
 
+## HTML: Forms
+
+- Form elements
+  - `<form>` - container for form controls
+  - `<input>` - text, password, radio, checkbox, etc.
+  - `<textarea>` - multi-line text input
+  - `<select>` - drop-down list
+  - `<button>` - submit, reset, or generic button
+
+---
+
+## HTML Forms Example
+
+```html
+<form action="/send" method="post">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required />
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required />
+  <label for="message">Message:</label>
+  <textarea id="message" name="message" required></textarea>
+  <button type="submit">Submit</button>
+</form>
+```
+
+In this example, the form will be submitted to `/send` using the POST method.
+
+---
+
+## JavaScript: Event Object
+
+- Event object is passed to event handlers
+- Contains information about the event
+  - `type` - event type, e.g. `click`, `submit`
+  - `target` - element that triggered the event, e.g. button
+
+- `target` property is useful for form validation
+- e.g. `event.target.value` to get the value of an input field
+
+---
+
+## JavaScript: Event Object Example
+
+```jsx
+const getValues = (event) => {
+  // Get the value of the input field
+  console.log(event.target.value);
+};
+
+// In JSX, pass the event object to the event handler
+<input type="text" onChange={(e) => getValues(e)} />;
+```
+
+---
+
+## JavaScript: `preventDefault`
+
+- Prevents the default behavior of an event
+- e.g. preventing form submission is useful for React applications
+  - you don't always want a form to submit something to a server and refresh the page
+
+```jsx
+const handleSubmit = (event) => {
+  event.preventDefault();
+  // Do something with the form data
+  // Form will not be submitted, i.e. /send will not be called
+};
+```
+
 ## React: Controlled Components
 
 - Controlled components are form elements whose value is controlled by React
@@ -301,3 +260,5 @@ export default function ControlledComponent() {
 - Use the onChange event handler to update state
 - Upon submission, create a dog object and display it in the console
 - Add validation using conditional rendering
+
+---
